@@ -1,0 +1,46 @@
+<h2>Products</h2>
+
+ <!-- <div *ngFor="let product of products">
+
+  <h3>
+    <a [title]="product.name + ' details'">
+      {{ product.name }}
+    </a>
+  </h3>  -->
+  <!--The RouterLink directive helps you customize the
+     anchor element. In this case, the route, or URL,
+      contains one fixed segment, /products. The final
+       segment is variable, inserting the id property 
+       of the current product. For example, the URL for
+        a product with an id of 1 would be similar to 
+        https://localhost:4200/products/1.-->
+<div *ngFor="let product of products; index as productId">
+
+  <h3>
+    <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="product.description">
+    Description: {{ product.description }}
+  </p>
+
+  <button (click)="share()">
+    Share
+  </button>
+
+  <app-product-alerts
+    [product]="product" 
+    (notify)="onNotify()">
+  </app-product-alerts>
+
+</div>
+
+<!-- *ngFor
+      *ngIf
+      Interpolation {{ }}
+      Property binding [ ]
+      Event binding ( )
+
+-->
